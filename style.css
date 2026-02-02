@@ -1,0 +1,98 @@
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #8c1515; /* 深紅色背景 */
+    font-family: "Microsoft JhengHei", system-ui, sans-serif;
+    color: #333;
+}
+
+.app-container {
+    max-width: 500px; /* 手機寬度限制 */
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: #d32f2f;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+h1 { margin: 0; font-size: 1.2rem; }
+
+/* 畫布縮放：寬度 100%，高度自動 */
+.preview-section {
+    width: 100%;
+    padding: 10px;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cardCanvas {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.control-section {
+    padding: 20px;
+    flex: 1;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 18px;
+    resize: none;
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.color-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-download {
+    flex: 1;
+    background: #d32f2f;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-download:active { background: #b71c1c; }
+
+.hint {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 15px;
+}
