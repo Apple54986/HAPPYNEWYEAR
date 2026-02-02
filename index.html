@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年賀卡產生器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧧 新年賀卡產生器</h1>
+        
+        <div class="main-content">
+            <!-- 預覽畫布 -->
+            <div class="canvas-container">
+                <canvas id="cardCanvas" width="800" height="800"></canvas>
+            </div>
+
+            <!-- 控制面板 -->
+            <div class="controls">
+                <div class="input-group">
+                    <label>輸入祝福語：</label>
+                    <textarea id="textInput" placeholder="在此輸入文字...">祝你新年快樂
+大吉大利</textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>文字顏色：</label>
+                    <input type="color" id="colorPicker" value="#FFD700"> <!-- 預設金色 -->
+                </div>
+
+                <div class="button-group">
+                    <button id="downloadBtn" class="btn-primary">下載賀卡</button>
+                    <p class="tip">提示：文字會自動轉為垂直排列</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
