@@ -2,38 +2,36 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新年賀卡產生器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>龍年/馬年 賀卡產生器</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🧧 新年賀卡產生器</h1>
-        
-        <div class="main-content">
-            <!-- 預覽畫布 -->
-            <div class="canvas-container">
-                <canvas id="cardCanvas" width="1080" height="1350"></canvas>
+    <div class="app-container">
+        <header>
+            <h1>🧧 新年賀卡製作</h1>
+        </header>
+
+        <!-- 畫布預覽區 -->
+        <div class="preview-section">
+            <canvas id="cardCanvas"></canvas>
+        </div>
+
+        <!-- 操作區 -->
+        <div class="control-section">
+            <div class="input-group">
+                <label for="textInput">輸入祝福語 (橫向)：</label>
+                <textarea id="textInput" placeholder="在此輸入文字..." rows="2">平安喜樂</textarea>
             </div>
 
-            <!-- 控制面板 -->
-            <div class="controls">
-                <div class="input-group">
-                    <label>輸入祝福語：</label>
-                    <textarea id="textInput" placeholder="在此輸入文字...">祝你新年快樂
-大吉大利</textarea>
+            <div class="settings-row">
+                <div class="color-group">
+                    <label>文字顏色</label>
+                    <input type="color" id="colorPicker" value="#fce893"> <!-- 接近原圖的金黃色 -->
                 </div>
-
-                <div class="input-group">
-                    <label>文字顏色：</label>
-                    <input type="color" id="colorPicker" value="#FFD700"> <!-- 預設金色 -->
-                </div>
-
-                <div class="button-group">
-                    <button id="downloadBtn" class="btn-primary">下載賀卡</button>
-                    <p class="tip">提示：文字會自動轉為垂直排列</p>
-                </div>
+                <button id="downloadBtn" class="btn-download">💾 下載圖片</button>
             </div>
+            <p class="hint">提示：文字會自動在中間水平置中</p>
         </div>
     </div>
     <script src="script.js"></script>
