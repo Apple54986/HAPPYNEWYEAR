@@ -4,55 +4,63 @@ const textInput = document.getElementById('textInput');
 const colorPicker = document.getElementById('colorPicker');
 const downloadBtn = document.getElementById('downloadBtn');
 
-// 準備背景圖 (你可以更換成自己的圖片網址)
+// 1. 準備背景圖
 const bgImage = new Image();
-bgImage.crossOrigin = "anonymous"; 
-// 這裡用一個紅底背景範例，建議之後在 GitHub 資料夾放一張 bg.jpg
-bgImage.src = 'https://img.freepik.com/free-vector/traditional-chinese-new-year-red-background_1035-18880.jpg';
+// 這裡改為你的檔名，因為在同一個資料夾，直接寫檔名即可
+bgImage.src = 'bg.jpg'; 
 
+// 2. 當圖片載入完成後才執行繪製
 bgImage.onload = () => {
+    // 自動調整畫布尺寸以符合圖片實際大小
+    canvas.width = bgImage.width;
+    canvas.height = bgImage.height;
     drawCard();
 };
 
-// 繪製賀卡
 function drawCard() {
-    // 1. 畫背景
+    // 清除畫布並重繪背景
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
 
-    // 2. 設定文字樣式
-    const fontSize = 80;
-    ctx.font = `bold ${fontSize}px "Microsoft JhengHei"`;
+    // 設定文字樣式 (根據畫布寬度動態調整字體大小，避免圖大字小)
+    const fontSize = Math.floor(canvas.width * 0.1); // 字體大小約為寬度的 10%
+    ctx.font = `bold ${fontSize}px "Microsoft JhengHei", "PingFang TC", sans-serif`;
     ctx.fillStyle = colorPicker.value;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
 
+    // 取得文字並處理換行
     const text = textInput.value;
     const lines = text.split('\n');
 
-    // 3. 垂直繪製邏輯
-    const margin = 100; // 邊距
-    const colSpacing = 100; // 行距
+    // 垂直繪製邏輯
+    const marginSide = canvas.width * 0.15; // 左右邊距
+    const marginTop = canvas.height * 0.15; // 上方邊距
+    const colSpacing = fontSize * 1.2;     // 行距
     
-    // 計算總共有幾行，從右邊開始寫 (符合古風)
     lines.forEach((line, colIndex) => {
         const characters = line.split('');
-        const x = canvas.width - margin - (colIndex * colSpacing);
+        // 從右側開始排版 (符合春聯習俗)
+        const x = canvas.width - marginSide - (colIndex * colSpacing);
         
         characters.forEach((char, charIndex) => {
-            const y = margin + (charIndex * (fontSize + 10));
+            const y = marginTop + (charIndex * (fontSize * 1.1));
+            // 繪製文字陰影，讓字在花花綠綠的背景上更清楚
+            ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
+            ctx.shadowBlur = 10;
             ctx.fillText(char, x, y);
         });
     });
 }
 
-// 監聽輸入即時更新
+// 監聽輸入
 textInput.addEventListener('input', drawCard);
 colorPicker.addEventListener('input', drawCard);
 
 // 下載功能
 downloadBtn.addEventListener('click', () => {
     const link = document.createElement('a');
-    link.download = 'new-year-card.png';
+    link.download = 'happy-new-year.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
 });
